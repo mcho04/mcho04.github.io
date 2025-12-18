@@ -216,6 +216,17 @@
       }
     })
   }
+
+/**
+   * Update footer year automatically
+   */
+  window.addEventListener('load', () => {
+    const yearEl = document.getElementById('current-year');
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear();
+    }
+  });
+
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
