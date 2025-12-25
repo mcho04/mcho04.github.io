@@ -808,6 +808,9 @@ section,
   border-radius: 14px;
   display: inline-block;
   box-shadow: 0 4px 14px rgba(15, 41, 67, 0.06);
+  /* ensure the photo/frame stacks above decorative shapes */
+  position: relative;
+  z-index: 10;
 }
 
 .hero .hero-image .photo-frame img {
@@ -817,10 +820,10 @@ section,
 
 .hero .hero-image img {
   position: relative;
-  z-index: 2;
+  z-index: 11; /* higher than shapes and frame to guarantee visibility */
   width: 100%;
-  /* slightly increased per request */
-  max-width: 140px;
+  /* increased to keep visual balance with shapes */
+  max-width: 200px;
   height: auto;
   display: block;
   margin-left: auto;
@@ -833,11 +836,13 @@ section,
   .hero .hero-image img {
     margin-left: 0;
     margin-right: 0;
-    max-width: 140px;
+    max-width: 200px;
   }
 
   .hero .hero-image .photo-frame {
     display: block;
+    transition: transform 0.18s ease;
+    transform: translateX(-18px); /* nudge left when space permits */
   }
 }
 
@@ -845,12 +850,12 @@ section,
 .hero .hero-image .shape-2 {
   position: absolute;
   border-radius: 30% 70% 70% 30%/30% 30% 70% 70%;
-  z-index: 1;
+  z-index: 1; /* keep shapes beneath the photo */
 }
 
 .hero .hero-image .shape-1 {
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
   background-color: color-mix(in srgb, var(--accent-color), transparent 85%);
   top: -20px;
   right: -20px;
@@ -858,8 +863,8 @@ section,
 }
 
 .hero .hero-image .shape-2 {
-  width: 200px;
-  height: 200px;
+  width: 270px;
+  height: 270px;
   background-color: color-mix(in srgb, var(--heading-color), transparent 90%);
   bottom: -20px;
   left: -20px;
@@ -2004,7 +2009,7 @@ section,
 
   .hero .hero-image img {
     width: 100%;
-    max-width: 120px;
+    max-width: 170px;
     height: auto;
     display: block;
     margin-left: auto;
