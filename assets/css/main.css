@@ -799,12 +799,46 @@ section,
 
 .hero .hero-image {
   position: relative;
-  padding: 2rem;
+  padding: 1rem;
+}
+
+.hero .hero-image .photo-frame {
+  background-color: #f2f4f6; /* subtle grey */
+  padding: 8px;
+  border-radius: 14px;
+  display: inline-block;
+  box-shadow: 0 4px 14px rgba(15, 41, 67, 0.06);
+}
+
+.hero .hero-image .photo-frame img {
+  display: block;
+  border-radius: 10px;
 }
 
 .hero .hero-image img {
   position: relative;
   z-index: 2;
+  width: 100%;
+  /* slightly increased per request */
+  max-width: 140px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  /* When there is enough horizontal space, keep the photo to the right of the text
+     by disabling the auto-centering and letting the column flex-end alignment apply. */
+  .hero .hero-image img {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 140px;
+  }
+
+  .hero .hero-image .photo-frame {
+    display: block;
+  }
 }
 
 .hero .hero-image .shape-1,
@@ -1957,4 +1991,33 @@ section,
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+}
+
+/*--------------------------------------------------------------
+  Mobile tweaks: reduce hero padding, cap portrait size, reduce AOS translate
+  (Applied for small devices to improve spacing and performance)
+--------------------------------------------------------------*/
+@media (max-width: 576px) {
+  .hero {
+    padding: 10px 0;
+  }
+
+  .hero .hero-image img {
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Reduce the AOS translate distance on small screens so animations feel less heavy */
+  html:not(.no-js) [data-aos=fade-up] {
+    transform: translate3d(0,50px,0);
+  }
+
+  /* Ensure rounded-4 has a valid fallback in case some declarations are malformed elsewhere */
+  .rounded-4 {
+    border-radius: var(--bs-border-radius-xl) !important;
+  }
 }
